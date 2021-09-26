@@ -1,0 +1,53 @@
+
+$server_name='localhost';
+$username='root';
+$password='';
+$database_name='first';
+$conn*mysqli_connect($server_name,$username,$password,$database_name);
+
+if(!$conn){
+die('connection failed : '.mysqli_connection_error());
+}
+if(isset($_POST['save']))
+{
+ $firstname=$_POST['firstname'];
+ $lastname=$_POST['lastname'];
+ $email=$_POST['email'];
+ $password=$_POST['password'];
+ $confirmpassword=$_POST['confirmpassword'];
+ $gender=$_POST['gender'];
+ $pincode=$_POST['pincode'];
+ $mobilenumber=$_POST['mobilenumber'];
+ $state=$_POST['state'];
+ $address=$_POST['address'];
+
+$sql_query = "INSERT INTO entry_details"   
+}else{
+
+
+    
+ $firstname=$_POST['firstname'];
+ $lastname=$_POST['lastname'];
+ $email=$_POST['email'];
+ $password=$_POST['password'];
+ $confirmpassword=$_POST['confirmpassword'];
+ $gender=$_POST['gender'];
+ $pincode=$_POST['pincode'];
+ $mobilenumber=$_POST['mobilenumber'];
+ $state=$_POST['state'];
+ $address=$_POST['address'];
+// data base connection
+$conn = new mysqli('localhost','root','','test');
+if($conn->connect_error){
+    die('connection failed : '.$conn->connection_error);
+}else{
+    $stmt = $conn->prepare("insert into registration(firstname,lastname,email,password,confirmpassword,gender,pincode,mobilenumber,state,address)
+    values(?,?,?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("sssiisiiss" $firstname,$lastname,$email,$password,$confirmpassword,$gender,$mobilenumber,$state,$address,$pincode);
+    $stmt->execute();
+    echo "registration succesfully done...";
+    $stmt->close();
+    $conn->close();
+}
+
+?>
